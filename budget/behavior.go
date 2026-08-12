@@ -5,8 +5,11 @@ import (
 )
 
 func Budget(parentRemaining, requested time.Duration) time.Duration {
-	if requested > 0 {
-		return requested
+	if parentRemaining <= 0 {
+		return 0
 	}
-	return parentRemaining
+	if requested <= 0 || requested > parentRemaining {
+		return parentRemaining
+	}
+	return requested
 }
